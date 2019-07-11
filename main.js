@@ -5,4 +5,36 @@
 
 var text = 'Ora non ci sono più dubbi: il circuito di Silverstone continuerà a fare parte del Mondiale di Formula 1. "È il circuito che ha ospitato il primissimo Gran Premio del Campionato del Mondo nel 1950  - si legge nel comunicato ufficiale della Formula 1 - e ora siamo lieti di annunciare che Silverstone continuerà ad essere sede del Gran Premio di Gran Bretagna almeno fino alla fine del 2024". Si tratta dunque di un accordo quinquennale firmato a Londra nella giornata del 9 luglio tra la Formula 1, il British Racing Drivers Club e il Circuito di Silverstone. "Siamo davvero lieti di dare questa notizia", ha detto Chase Carey, Chairman e CEO della Formula 1. "Abbiamo sempre detto che, se vogliamo avere un futuro a lungo termine, il nostro sport deve preservare le sue sedi storiche e Silverstone e la Gran Bretagna rappresentano la culla di questo sport. Oggi la Formula 1 è un sport globale, che si tiene in cinque continenti, guardato da un pubblico di oltre 500 milioni di fan e il nostro obiettivo è quello di far crescere questo numero portando lo sport che amiamo in nuovi paesi, pur mantenendo le sue radici: Silverstone e il Gran Premio di Gran Bretagna sono parte integrante di quella visione".';
 
-var badWords = ['futuro', 'il', 'sport', '500', 'Circuito', 'circuito', 'visione', 'Gran Bretagna'];
+var badWords = ['futuro', 'Chase Carey', 'sport', '500', 'Silverstone', 'circuito', 'visione', 'Gran Bretagna'];
+
+var textCensured = censorizer(text,badWords);
+console.log(textCensured);
+
+
+
+
+
+// # # FUNZIONI # #
+function censorizer (text, badWords) {
+	var textCensured = text;		//copia per mantenere il testo originale integro in "text"
+	var xxx;
+
+	// censuro ad una a una le parole che non vogliamo appaiano
+	for (var i = 0; i < badWords.length; i++) {
+		console.log('parola da cancellare: ' + badWords[i]);
+		xxx = xxxGenerator(badWords[i].length);
+		textCensured = textCensured.split(badWords[i]).join(xxx);
+	}
+
+	return textCensured;
+}
+
+
+// genera stringa di "X" della lunghezza di length
+function xxxGenerator (length) {
+	var xxx = 'X';
+	for (var i = 1; i < length; i++) {
+		xxx += 'X';
+	}
+	return xxx;
+}
