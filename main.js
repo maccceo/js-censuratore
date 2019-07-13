@@ -8,7 +8,9 @@ var text = 'Ora non ci sono più dubbi: il circuito di Silverstone continuerà a
 var badWords = ['futuro', 'Chase Carey', 'sport', '500', 'Silverstone', 'circuito', 'visione', 'Gran Bretagna'];
 
 var textCensured = censorizer(text,badWords);
-console.log(textCensured);
+console.log('Parole da censurare: ' + badWords);
+console.log('Censurate ' + textCensured.counter + ' parole.');
+console.log(textCensured.textCensured);
 
 
 
@@ -16,17 +18,22 @@ console.log(textCensured);
 
 // # # FUNZIONI # #
 function censorizer (text, badWords) {
-	var textCensured = text;		//copia per mantenere il testo originale integro in "text"
+	var textToCensor = text;		//copia per mantenere il testo originale integro in "text"
 	var xxx;
+	var counter = 0;
+	var result = {};
 
 	// censuro ad una a una le parole che non vogliamo appaiano
 	for (var i = 0; i < badWords.length; i++) {
-		console.log('parola da cancellare: ' + badWords[i]);
 		xxx = xxxGenerator(badWords[i].length);
-		textCensured = textCensured.split(badWords[i]).join(xxx);
-	}
 
-	return textCensured;
+		//conta il numero di volte che appare la parola da cancellare
+		counter += textToCensor.split(badWords[i]).length;
+		textToCensor = textToCensor.split(badWords[i]).join(xxx);
+	}
+	result.textCensured = textToCensor;
+	result.counter = counter;
+	return result;
 }
 
 
