@@ -9,8 +9,26 @@
 // var badWords = ['futuro', 'Chase Carey', 'sport', '500', 'Silverstone', 'circuito', 'visione', 'Gran Bretagna'];
 
 // # MODALITA' CON INSERIMENTO PROMPT
+var allClear = false;
+
 var text = prompt("Inserisci il testo da censurare:");
+//controllo che l'utente abbia inserito qualcosa
+while (allClear == false) {
+	if (!text)		text = prompt("Inserisci il testo da censurare:");
+	else 			allClear = true;
+}
+allClear = false;
+
 var badWords = prompt("Inserisci le parole da censurare separate da uno spazio:");
+//controllo che l'utente abbia inserito qualcosa
+while (allClear == false) {
+	if (!badWords)  {
+		badWords = prompt("Inserisci le parole da censurare separate da uno spazio:");
+	} else {
+		allClear = true;
+	} 			
+}
+
 badWords = badWords.split(' ');
 
 var textCensured = censorizer(text,badWords);
